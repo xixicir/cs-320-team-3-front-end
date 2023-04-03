@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "env PHASE=dev next dev",
-    "build": "env PHASE=build next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "NODE_OPTIONS=\"--max_old_space_size=8192\" next start",
     "generate-client": "openapi --input http://localhost:9001/openapi.json --output ./src/lib/api --client node",
     "lint": "next lint",
