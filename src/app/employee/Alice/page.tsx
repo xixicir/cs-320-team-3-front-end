@@ -1,23 +1,23 @@
-import Link from "next/link"
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const Employee = () => {
   const employee = {
-    name: 'Alice',
+    name: "Alice",
     hoursWorked: 40,
     shifts: [
       {
         id: 1,
-        date: 'Saturday, June 5th',
-        startTime: '8AM',
-        endTime: '8PM',
+        date: "Saturday, June 5th",
+        startTime: "8AM",
+        endTime: "8PM",
         payment: 200,
       },
       {
         id: 2,
-        date: 'Sunday, June 6th',
-        startTime: '9AM',
-        endTime: '6PM',
+        date: "Sunday, June 6th",
+        startTime: "9AM",
+        endTime: "6PM",
         payment: 150,
       },
     ],
@@ -43,11 +43,11 @@ const Employee = () => {
               <div className="px-4 py-2 w-1/5">${shift.payment.toLocaleString()}</div>
             </div>
           ))}
-        <Link href="/employee/Alice/timesheet">
-          <div className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded mt-4">
-            Add Time
-          </div>
-        </Link>
+          <Link href="/employee/Alice/timesheet">
+            <div className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded mt-4">
+              Add Time
+            </div>
+          </Link>
         </div>
       </div>
     </div>

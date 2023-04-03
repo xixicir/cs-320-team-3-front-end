@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const TimesheetInput = () => {
-  const employeeName = 'Alice';
+  const employeeName = "Alice";
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -38,11 +38,11 @@ const TimesheetInput = () => {
             Submit
           </button>
         </form>
-        </div>
-        </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default function Page() {
-  return <TimesheetInput />
+  return <TimesheetInput />;
 }

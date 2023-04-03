@@ -6,12 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_OPTIONS=\"--max_old_space_size=8192\" next start",
-    "generate-client": "openapi --input http://localhost:9001/openapi.json --output ./src/lib/api --client node",
     "lint": "next lint",
     "format": "dprint fmt"
   },
   "dependencies": {
-    "@lpgera/ts-env": "^1.2.3",
     "@next/font": "13.1.6",
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
@@ -35,9 +33,7 @@
     "@types/react-plotly.js": "^2.6.0",
     "autoprefixer": "^10.4.13",
     "dprint": "^0.34.5",
-    "openapi-typescript-codegen": "^0.23.0",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
-    "tsx": "^3.12.5"
+    "tailwindcss": "^3.2.7"
   }
 }
