@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const ManagerPage = () => {
-  const managerName = 'John Doe';
+  const managerName = "John Doe";
   const employees = [
-    { id: 1, name: 'Alice', hoursWorked: 40, averageSalary: 50000 },
-    { id: 2, name: 'Bob', hoursWorked: 45, averageSalary: 55000 },
-    { id: 3, name: 'Carol', hoursWorked: 35, averageSalary: 45000 },
+    { id: 1, name: "Alice", hoursWorked: 40, averageSalary: 50000 },
+    { id: 2, name: "Bob", hoursWorked: 45, averageSalary: 55000 },
+    { id: 3, name: "Carol", hoursWorked: 35, averageSalary: 45000 },
   ];
 
   return (
@@ -21,9 +21,9 @@ const ManagerPage = () => {
           </div>
           {employees.map((employee) => (
             <div key={employee.id} className="flex bg-white border-t">
-                <Link href={`/employee/${employee.name}`}>
-                    <div className="px-4 py-2 w-1/3">{employee.name}</div>
-                </Link>
+              <Link href={`/employee/${employee.name}`}>
+                <div className="px-4 py-2 w-1/3">{employee.name}</div>
+              </Link>
               <div className="px-4 py-2 w-1/3">{employee.hoursWorked}</div>
               <div className="px-4 py-2 w-1/3">${employee.averageSalary}</div>
             </div>
@@ -35,5 +35,5 @@ const ManagerPage = () => {
 };
 
 export default function Page() {
-    return <ManagerPage/>
+  return <ManagerPage />;
 }
