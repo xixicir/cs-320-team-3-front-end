@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const LoginPage = () => {
+const createAccountPage = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-96">
-        <h1 className="text-3xl font-bold mb-8 text-center">Login</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center">Create Account</h1>
         <div className="flex flex-col space-y-4">
           <div>
             <label htmlFor="username" className="block mb-2">Username</label>
@@ -24,8 +24,10 @@ const LoginPage = () => {
               placeholder="Password"
             />
           </div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
-            Login
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+          >
+            Create Account
           </button>
         </div>
       </div>
@@ -34,5 +36,5 @@ const LoginPage = () => {
 };
 
 export default function Page() {
-  return <LoginPage />;
+    return <createAccountPage />;
 }
