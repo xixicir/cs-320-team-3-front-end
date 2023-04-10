@@ -11,6 +11,10 @@ export function storeAuthToken(token: string) {
   localStorage.setItem('token', token);
 }
 
+export function deleteAuthToken() {
+    localStorage.removeItem('token');
+}
+
 export async function getUserData() {
     if (!isLoggedIn()) {
         return null;
