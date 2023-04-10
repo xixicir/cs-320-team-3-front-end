@@ -1,6 +1,17 @@
+"use client"
+
 import React from "react";
+import { isLoggedIn } from "../auth";
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
+  const router = useRouter()
+  if (isLoggedIn()) {
+    router.push("/")
+    return <></>
+  }
+
+  // if the auth token is valid, redirect to the home page
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-96">
