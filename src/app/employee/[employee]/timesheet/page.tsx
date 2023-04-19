@@ -1,26 +1,23 @@
 import { url } from "inspector";
-import Image from "next/image";
-import React from "react";
-import bg from  '../Granite.jpeg'
-import Link from "next/link"
 import { BlockList } from "net";
-
-
-
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import bg from "../Granite.jpeg";
 
 const style = {
-  backgroundImage: 'url(${bg})',
-  backgroundSize: 'cover'
-}
+  backgroundImage: "url(${bg})",
+  backgroundSize: "cover",
+};
 
 const TimesheetInput = (employee: string) => {
   const employeeName = employee;
   return (
     <div className="bg-[url('/Granite.jpeg')] bg-cover min-h-screen">
       <div className="container mx-auto py-10 px-4">
-        <div className="flex flex-row" style={{justifyContent: "space-between"}}>
-          <h1 className="text-6xl font-bold mb-8 font-playfair">Log Your Shift: </h1>
-          <h2 className="font-playfair font-bold text-xl"style={{marginTop:'23px'}}>{employeeName}</h2>
+        <div className="flex flex-row" style={{ justifyContent: "space-between" }}>
+          <h1 className="text-6xl font-bold mb-8 font-playfair">Log Your Shift:</h1>
+          <h2 className="font-playfair font-bold text-xl" style={{ marginTop: "23px" }}>{employeeName}</h2>
         </div>
         <form className="flex flex-col space-y-4">
           <div className="flex space-x-4">
@@ -49,8 +46,12 @@ const TimesheetInput = (employee: string) => {
               />
             </div>
           </div>
-          <Link href={'employee/' + employee} >
-            <button type="submit" className="bg-blue-500 hover:bg-gray-500 hover:text-white-500 text-white text-hover font-bold py-2 px-4 rounded" style={{ width:"100%"}}>
+          <Link href={"employee/" + employee}>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-gray-500 hover:text-white-500 text-white text-hover font-bold py-2 px-4 rounded"
+              style={{ width: "100%" }}
+            >
               Submit
             </button>
           </Link>
@@ -60,8 +61,6 @@ const TimesheetInput = (employee: string) => {
   );
 };
 
-export default function Page({ params, 
-}: { params: { employee: string };
-}) {
+export default function Page({ params }: { params: { employee: string } }) {
   return TimesheetInput(params.employee);
 }

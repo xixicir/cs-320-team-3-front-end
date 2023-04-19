@@ -34,8 +34,6 @@ const ManagerPage = (manager: string) => {
   );
 };
 
-export default function Page({ params, 
-}: { params: { manager: string };
-}) {
-  return ManagerPage(params.manager)
-};
+export default function Page({ params }: { params: { manager: string } }) {
+  return ManagerPage(params.manager);
+}

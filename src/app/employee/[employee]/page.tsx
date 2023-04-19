@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { useParams } from "react-router-dom"
-
-
+import { useParams } from "react-router-dom";
 
 const Employee = (name: string) => {
   const employee = {
@@ -29,7 +27,7 @@ const Employee = (name: string) => {
   return (
     <div className="bg-[url('/Granite.jpeg')] min-h-screen">
       <div className="container mx-auto py-10 px-4">
-      <h1 className="text-xl text-center font-bold mb-2 letter-spacing:100 font-playfair">Employee </h1>
+        <h1 className="text-xl text-center font-bold mb-2 letter-spacing:100 font-playfair">Employee</h1>
         <h1 className="text-8xl text-center font-bold mb-12 font-playfair">{employee.name}</h1>
         <h2 className="text-xl font-semibold mb-4">Total Hours Worked: {employee.hoursWorked}</h2>
         <div className="flex flex-col">
@@ -47,7 +45,7 @@ const Employee = (name: string) => {
               <div className="px-4 py-2 w-1/5">${shift.payment.toLocaleString()}</div>
             </div>
           ))}
-          <Link href={'/employee/' + name + '/timesheet'}>
+          <Link href={"/employee/" + name + "/timesheet"}>
             <div className="bg-blue-500 hover:bg-gray-500 hover:text-white-500 text-center text-white font-bold py-2 px-4 rounded mt-4">
               Add Time
             </div>
@@ -58,12 +56,8 @@ const Employee = (name: string) => {
   );
 };
 
-export default function Page({ params, 
-}: { params: { employee: string };
-}) {
-  return Employee(params.employee)
-};
+export default function Page({ params }: { params: { employee: string } }) {
+  return Employee(params.employee);
+}
 
-
-
-//export default Employee;
+// export default Employee;

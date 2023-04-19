@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
+import { API_ENDPOINT } from "@/lib/globals";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useRouter } from 'next/navigation';
 import { getUserData, storeAuthToken } from "../auth";
 
-const ENDPOINT = "http://127.0.0.1:8080/account/create";
-
 const SignupPage = () => {
-  const router = useRouter()
-  const [errorText, setErrorText] = useState("")
+  const router = useRouter();
+  const [errorText, setErrorText] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -17,52 +16,54 @@ const SignupPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({ 
-            email_address: email,
-            password, 
-            first_name: firstName, 
-            last_name: lastName, 
-            pay_rate: payRate 
-    })
+    console.log({
+      email_address: email,
+      password,
+      first_name: firstName,
+      last_name: lastName,
+      pay_rate: payRate,
+    });
 
-    const response = await fetch(ENDPOINT, {
+    const response = await fetch(API_ENDPOINT + "account/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         email_address: email,
-        password, 
-        first_name: firstName, 
-        last_name: lastName, 
-        pay_rate: payRate 
-    }),
+        password,
+        first_name: firstName,
+        last_name: lastName,
+        pay_rate: payRate,
+      }),
     });
 
     const data = await response.json();
+    if (!response.ok) {
+      if (data.errors) {
+        setErrorText(data.errors);
+        return;
+      }
+    }
+
     const { user_created, token } = data;
     storeAuthToken(token);
 
-    if (data.errors) {
-        setErrorText(data.errors)
-        return
-    }
-
     if (user_created) {
-        const userData = await getUserData()
-        if (userData === null) {
-            setErrorText(`Failed to store auth token, or invalid token: ${token}`)
-            return
-        }
-        console.log(userData)
-        if (userData.isManager) {
-            // redirect to manager page
-        } else {
-            // redirect to employee page
-        }
-        router.push("/")
+      const userData = await getUserData();
+      if (userData === null) {
+        setErrorText(`Failed to store auth token, or invalid token: ${token}`);
+        return;
+      }
+      console.log(userData);
+      if (userData.isManager) {
+        // redirect to manager page
+      } else {
+        // redirect to employee page
+      }
+      router.push("/");
     } else {
-        throw new Error(`Failed to create user: ${JSON.stringify(data)}`)
+      throw new Error(`Failed to create user: ${JSON.stringify(data)}`);
     }
   };
 
