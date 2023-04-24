@@ -15,6 +15,15 @@ export function deleteAuthToken() {
   localStorage.removeItem("token");
 }
 
+export function getAuthHeader() {
+  if (!isLoggedIn()) {
+    throw new Error("Not logged in")
+  }
+  return {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+  }
+}
+
 export async function getUserData() {
   if (!isLoggedIn()) {
     return null;
