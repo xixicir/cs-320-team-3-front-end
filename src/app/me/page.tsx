@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -23,55 +23,55 @@ export default function Page() {
     return <div>Loading...</div>;
   }
 
+  type TimeEntry = {
+    payRate: string;
+    start: string;
+    end: string;
+  }
+
   type UserData = {
     email: string;
-    firstName: string;
-    lastName: string;
-    timeEntries: TimeEntry[]
+    first_name: string;
+    last_name: string;
+    time_entries: TimeEntry[];
   }
 
-  type TimeEntry = {
-    payRate: number;
-    dateLogged: string;
-    numHours: number;
-  }
   const typedUserData = userData as UserData;
 
+  const formatDate = (date: string): string => {
+    return new Date(date).toLocaleString();
+  };
+
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="min-h-screen">
       <div className="container mx-auto py-10 px-4">
-        <h1 className="text-3xl font-bold mb-8">Timesheet Input for {employeeName}</h1>
-        <form className="flex flex-col space-y-4">
-          <div className="flex space-x-4">
-            <div className="w-1/3">
-              <label htmlFor="startTime" className="block mb-2">Start Time</label>
-              <input
-                type="time"
-                id="startTime"
-                className="border p-2 rounded w-full"
-              />
-            </div>
-            <div className="w-1/3">
-              <label htmlFor="endTime" className="block mb-2">End Time</label>
-              <input
-                type="time"
-                id="endTime"
-                className="border p-2 rounded w-full"
-              />
-            </div>
-            <div className="w-1/3">
-              <label htmlFor="date" className="block mb-2">Date</label>
-              <input
-                type="date"
-                id="date"
-                className="border p-2 rounded w-full"
-              />
+        <h1 className="text-6xl font-bold mb-8 font-playfair text-center">
+          {typedUserData.first_name} {typedUserData.last_name}'s Dashboard
+        </h1>
+        <div className="flex flex-col space-y-4">
+          <div>
+            <label className="block mb-2">Email</label>
+            <p className="border p-2 rounded w-full">{typedUserData.email}</p>
+          </div>
+          <div>
+            <label className="block mb-2">Time Entries</label>
+            <div className="border p-2 rounded w-full space-y-4">
+              {typedUserData.time_entries.map((entry, index) => (
+                <div key={index} className="border-b flex justify-between py-2">
+                  <div>
+                    <span className="font-bold">Pay Rate:</span> {entry.payRate}
+                  </div>
+                  <div>
+                    <span className="font-bold">Start:</span> {formatDate(entry.start)}
+                  </div>
+                  <div>
+                    <span className="font-bold">End:</span> {formatDate(entry.end)}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Submit
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );
