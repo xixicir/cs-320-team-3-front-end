@@ -50,19 +50,26 @@ const SignupPage = () => {
     storeAuthToken(token);
 
     if (user_created) {
-      const userData = await getUserData();
-      if (userData === null) {
-        setErrorText(`Failed to store auth token, or invalid token: ${token}`);
-        return;
-      }
-      console.log(userData);
-      if (userData.isManager) {
-        // redirect to manager page
+      const response = await fetch(API_ENDPOINT + "account/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email_address: email,
+          password,
+        }),
+      });
+    
+      const responseJson = await response.json();
+      if (response.ok) {
+        storeAuthToken(responseJson.token);
+        router.push("/");
       } else {
-        // redirect to employee page
+        setErrorText(responseJson.errors + ` for ${email}, ${password}`);
       }
-      router.push("/");
-    } else {
+    }
+    else {
       throw new Error(`Failed to create user: ${JSON.stringify(data)}`);
     }
   };
