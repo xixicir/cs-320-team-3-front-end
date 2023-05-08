@@ -24,17 +24,45 @@ export function getAuthHeader() {
   }
 }
 
+export async function getAccountData(email_address: string) {
+  const accountInfo = await fetch(ENDPOINT + "/account/view", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
+    body: JSON.stringify({ email_address })
+  })
+}
+
 export async function getUserData() {
   if (!isLoggedIn()) {
     return null;
   }
-
-  const userInfo = await fetch(ENDPOINT + "/time/get", {
+  const userAccountInfo = await fetch(ENDPOINT + "/account/get", {
     method: "GET",
-    headers: {
-      "Authorization": "Bearer " + localStorage.getItem("token"),
-    },
+    headers: getAuthHeader()
+  })
+  const userAccountInfoAsJson = await userAccountInfo.json();
+
+  const userTimeInfo = await fetch(ENDPOINT + "/time/get", {
+    method: "GET",
+    headers: getAuthHeader()
   });
-  const userInfoAsJson = await userInfo.json();
-  return userInfoAsJson;
+  const userTimeInfoAsJson = await userTimeInfo.json();
+  return { time: userTimeInfoAsJson, account: userAccountInfoAsJson };
+}
+
+
+export async function getManagerData() {
+  if (!isLoggedIn()) {
+    return null;
+  }
+
+  const managerAccountInfo = await fetch(ENDPOINT + "/manager/get", {
+    method: "GET",
+    headers: getAuthHeader()
+  })
+  const managerAccountInfoAsJson = await managerAccountInfo.json();
+  return { account: managerAccountInfoAsJson };
 }
