@@ -19,7 +19,7 @@ const TimesheetInput = (employee: string) => {
   const router = useRouter()
   const [timeEntry, setTimeEntry] = useState<null | { start: string; end: string}>(null);
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     const startTime = event.target.form.startTime.value;
     const endTime = event.target.form.endTime.value;
     const day = event.target.form.date.value;
@@ -47,7 +47,7 @@ const TimesheetInput = (employee: string) => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
       event.preventDefault();
       const requestOptions = {
         method: "POST",

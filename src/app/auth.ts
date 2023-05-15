@@ -53,6 +53,18 @@ export async function getUserData() {
   return { time: userTimeInfoAsJson, account: userAccountInfoAsJson };
 }
 
+export async function getManageeTimeData() {
+  if (!isLoggedIn()) {
+    return null;
+  }
+
+  const manageeTimeData = await fetch(ENDPOINT + "/time/employees", {
+    method: "GET", 
+    headers: getAuthHeader()
+  })
+  const manageeTimeDataAsJson = await manageeTimeData.json();
+  return {employeesTimeData: manageeTimeDataAsJson};
+}
 
 export async function getManagerData() {
   if (!isLoggedIn()) {
