@@ -38,15 +38,23 @@ export async function getUserData() {
   if (!isLoggedIn()) {
     return null;
   }
+  console.log(getAuthHeader());
+
   const userAccountInfo = await fetch(ENDPOINT + "/account/get", {
     method: "GET",
-    headers: getAuthHeader()
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
   })
   const userAccountInfoAsJson = await userAccountInfo.json();
 
   const userTimeInfo = await fetch(ENDPOINT + "/time/get", {
     method: "GET",
-    headers: getAuthHeader()
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
   });
   const userTimeInfoAsJson = await userTimeInfo.json();
   return { time: userTimeInfoAsJson, account: userAccountInfoAsJson };
@@ -59,7 +67,10 @@ export async function getManageeTimeData() {
 
   const manageeTimeData = await fetch(ENDPOINT + "/time/employees", {
     method: "GET", 
-    headers: getAuthHeader()
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
   })
   const manageeTimeDataAsJson = await manageeTimeData.json();
   return {employeesTimeData: manageeTimeDataAsJson};
@@ -72,7 +83,10 @@ export async function getManagerData() {
 
   const managerAccountInfo = await fetch(ENDPOINT + "/manager/get", {
     method: "GET",
-    headers: getAuthHeader()
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
   })
   const managerAccountInfoAsJson = await managerAccountInfo.json();
   return { account: managerAccountInfoAsJson };
