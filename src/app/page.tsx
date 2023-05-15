@@ -42,22 +42,6 @@ const HomePage = () => {
   const router = useRouter();
 
   return (
-<<<<<<< HEAD
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-5xl font-bold mb-4">Time Tracker</h1>
-        <p className="text-xl">Welcome to the Time Tracker application!</p>
-        {!isLoggedIn() ? <button onClick={()=>{router.push("/login")}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded w-full">
-          Proceed to Login Page
-          </button> : <button onClick = {() => router.push("/me")}className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded w-full">
-          Proceed to your home page!
-          </button> 
-        }
-        {!isLoggedIn() ? <button onClick={()=>{router.push("/signup")}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded w-full">
-          Proceed to Sign Up Page
-          </button> : null
-        }
-=======
     <>
       <Taskbar />
       <div className="bg-gradient-to-r from-blue-500 to-blue-700 min-h-screen flex items-center justify-center">
@@ -95,7 +79,6 @@ const HomePage = () => {
             </button>
           ) : null}
         </div>
->>>>>>> 1a3652e5243ce438f196589b779c808339a7e19f
       </div>
     </>
   );
