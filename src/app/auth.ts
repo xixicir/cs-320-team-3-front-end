@@ -3,8 +3,7 @@
 const ENDPOINT = "http://127.0.0.1:8080";
 
 export function isLoggedIn() {
-  const isTokenInLocalStorage = localStorage.getItem("token") !== null;
-  return isTokenInLocalStorage;
+  return typeof window !== "undefined" && localStorage.getItem("token") !== null
 }
 
 export function storeAuthToken(token: string) {

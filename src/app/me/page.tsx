@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getUserData, isLoggedIn } from "../auth";
+import { Taskbar } from "../page"
 
 export default function Page() {
   const router = useRouter();
@@ -56,33 +57,45 @@ export default function Page() {
     return new Date(date).toLocaleString();
   };
 
+
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto py-10 px-4">
-        <h1 className="text-6xl font-bold mb-8 font-playfair text-center">
-          {typedUserData.account.first_name} {typedUserData.account.last_name}'s Dashboard
-        </h1>
-        <div className="flex flex-col space-y-4">
-          <div>
-            <label className="block mb-2">Email</label>
-            <p className="border p-2 rounded w-full">{typedUserData.account.email_address}</p>
-          </div>
-          <div>
-            <label className="block mb-2">Time Entries</label>
-            <div className="border p-2 rounded w-full space-y-4">
-              {typedUserData.time.time_entries.map((entry, index) => (
-                <div key={index} className="border-b flex justify-between py-2">
-                  <div>
-                    <span className="font-bold">Pay Rate:</span> {entry.pay_rate}
-                  </div>
-                  <div>
-                    <span className="font-bold">Start:</span> {formatDate(entry.start)}
-                  </div>
-                  <div>
-                    <span className="font-bold">End:</span> {formatDate(entry.end)}
+    <>
+    <Taskbar />
+      <div className="min-h-screen bg-gradient-to-r from-blue-500 to-blue-700">
+        <div className="container mx-auto py-10 px-4">
+          <div className="text-center p-8 bg-white rounded-xl shadow-lg">
+            <h1 className="text-6xl font-bold mb-8 font-playfair text-black-700">
+              {typedUserData.account.first_name} {typedUserData.account.last_name}'s Dashboard
+            </h1>
+            <div className="flex flex-col space-y-4">
+              <div>
+                <label className="block mb-2 text-gray-700">Email</label>
+                <p className="border p-2 rounded w-full text-gray-700">{typedUserData.account.email_address}</p>
+              </div>
+              <div>
+                <label className="block mb-2 text-gray-700">Time Entries</label>
+                <div className="border rounded w-full">
+                  <div className="overflow-y-auto max-h-72">
+                    {typedUserData.time.time_entries.map((entry, index) => (
+                      <div
+                        key={index}
+                        className={`border-b flex justify-between py-2 px-4 "bg-white"
+                        hover:bg-blue-200 transition-colors duration-150`}
+                      >
+                        <div>
+                          <span className="font-bold text-gray-700">Pay Rate:</span> {entry.pay_rate}
+                        </div>
+                        <div>
+                          <span className="font-bold text-gray-700">Start:</span> {formatDate(entry.start)}
+                        </div>
+                        <div>
+                          <span className="font-bold text-gray-700">End:</span> {formatDate(entry.end)}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
           <div>
@@ -91,6 +104,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
