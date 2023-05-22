@@ -64,7 +64,7 @@ const SignupPage = () => {
       const responseJson = await response.json();
       if (response.ok) {
         storeAuthToken(responseJson.token);
-        router.push("/");
+        router.push("/me");
       } else {
         setErrorText(responseJson.errors + ` for ${email}, ${password}`);
       }

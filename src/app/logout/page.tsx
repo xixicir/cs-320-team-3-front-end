@@ -10,7 +10,7 @@ const LogoutPage = () => {
 
   useEffect(() => {
     deleteAuthToken();
-    router.push("/");
+    router.push("/login");
   }, []);
 
   return (<div>

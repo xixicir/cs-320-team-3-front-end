@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isLoggedIn()) {
-      router.push("/");
+      router.push("/me");
     }
   }, []);
 
@@ -32,16 +32,18 @@ const LoginPage = () => {
     const responseJson = await response.json();
     if (response.ok) {
       storeAuthToken(responseJson.token);
-      router.push("/");
+      router.push("/me");
     } else {
       setErrorText(responseJson.errors + ` for ${userName}, ${password}`);
     }
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h1 className="text-3xl font-bold mb-8 text-center">Login</h1>
+      <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-blue-700 flex items-center justify-center">
+        <div className="bg-white p-8 rounded shadow-md w-96">
+        <h1 className="text-center text-4xl font-bold mb-8 text-indigo-700 tracking-tight">
+              Login
+        </h1>
         {errorText && <p className="text-red-500 mb-4">{errorText}</p>}
         <div className="flex flex-col space-y-4">
           <div>

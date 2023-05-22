@@ -38,7 +38,6 @@ export async function getUserData() {
   if (!isLoggedIn()) {
     return null;
   }
-  console.log(getAuthHeader());
 
   const userAccountInfo = await fetch(ENDPOINT + "/account/get", {
     method: "GET",
