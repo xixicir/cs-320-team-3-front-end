@@ -43,11 +43,13 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </div>
-      <div>
+        
+        <div>
         <button onClick = {(e) => (router.push("/me/manage/add_managee"))} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
           Add New Managee
         </button>
+        </div>
       </div>
+
   </div>)
 }

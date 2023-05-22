@@ -30,6 +30,12 @@ export const Taskbar = () => {
               >
                 Dashboard
               </div>
+              <div
+                onClick={() => router.push("/logout")}
+                className="cursor-pointer text-gray-600 hover:text-gray-900 transition-colors duration-150 py-1 px-4 rounded hidden sm:block"
+              >
+                Logout
+              </div>
             </div>
           </div>
         </div>
