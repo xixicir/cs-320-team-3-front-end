@@ -1,5 +1,14 @@
-- /me/add => adds time
-- /me/manage => manage people
-- /me
+# TimePunch Frontend
 
-- screen to add people to manage
+## Installation
+
+```bash
+npm install .
+npm run dev
+```
+
+## Pages
+
+-   **/me/add** => adds time
+-   **/me/manage** => manage people
+-   **/me** => dashboard
