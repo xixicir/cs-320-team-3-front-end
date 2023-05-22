@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { getManageeTimeData, getManagerData, isLoggedIn } from "../../auth";
 import { Taskbar } from "../../page"
 import Chart from 'react-apexcharts';
-import { verify } from "crypto";
 
 
 export default function Page() {

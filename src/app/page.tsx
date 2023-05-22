@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { isLoggedIn, deleteAuthToken } from "./auth";
+import withNoSSR from "@/components/noSSR";
 
 export const Taskbar = () => {
   const router = useRouter();
@@ -52,7 +53,7 @@ export const Taskbar = () => {
     
 };
 
-export default function Page() {
+function Page() {
   const router = useRouter();
 
   return (
@@ -85,3 +86,6 @@ export default function Page() {
   </div>
 );
 }
+
+
+export default withNoSSR(Page);
