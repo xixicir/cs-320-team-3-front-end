@@ -54,7 +54,7 @@ export default function Page({params, }: {params: {managee: string}}) {
                 setSpecificManageeData(undefined)
             }
             else{
-                specificManagee = employeeTimeData.employeesTimeData.find((element: any) => (element.email === properEmailParam))
+                specificManagee = employeeTimeData.employeesTimeData.find((element: any) => (element.email_address === properEmailParam))
             }
 
             setSpecificManageeData(specificManagee)
