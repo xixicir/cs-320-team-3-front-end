@@ -54,7 +54,7 @@ export default function Page() {
   const typedUserData = userData as FullUserData;
 
   const formatDate = (date: string): string => {
-    return new Date(date).toLocaleString();
+    return new Date(date).toLocaleString('en-US', { timeZone: 'UTC' });
   };
 
 
