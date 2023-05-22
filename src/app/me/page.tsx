@@ -78,11 +78,19 @@ export default function Page() {
     return ((d2.getTime() - d1.getTime()) / 3600000).toFixed(2);
   };
 
-  const timeEntries = typedUserData.time.time_entries;
+  function cmp(a, b) {
+    return Date.parse(a.start) - Date.parse(b.start);
+  }
 
-  const timeLabels = timeEntries.map(entry => formatDateGraph(entry.start));
-  const payRates = timeEntries.map(entry => entry.pay_rate);
-  const hoursWorked = timeEntries.map(entry => formatHours(entry.start, entry.end));
+  const timeEntriesAscending = typedUserData.time.time_entries.slice();
+  timeEntriesAscending.sort(cmp);
+
+  const timeEntriesDescending = typedUserData.time.time_entries.slice();
+  timeEntriesDescending.sort(cmp).reverse();
+
+  const timeLabels = timeEntriesAscending.map(entry => formatDateGraph(entry.start));
+  const payRates = timeEntriesAscending.map(entry => entry.pay_rate);
+  const hoursWorked = timeEntriesAscending.map(entry => formatHours(entry.start, entry.end));
 
   const chartData = {
     series: [
@@ -212,7 +220,7 @@ export default function Page() {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                        {typedUserData.time.time_entries.map((entry, index) => (
+                        {timeEntriesDescending.map((entry, index) => (
                           <tr
                             key={index}
                             className="cursor-pointer hover:bg-blue-100 transition-colors duration-150"

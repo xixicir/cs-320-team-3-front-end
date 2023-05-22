@@ -76,7 +76,15 @@ export default function Page({params, }: {params: {managee: string}}) {
         return <div>Error: Specific Managee not found</div>
     }
 
-    const timeEntries = specificManageeData.time_entries;
+    const timeEntries = specificManageeData.time_entries.slice();
+    function cmp(a, b) {
+      return Date.parse(a.start) - Date.parse(b.start);
+    }
+    timeEntries.sort(cmp);
+
+    const timeEntriesDescending = specificManageeData.time_entries.slice();
+    timeEntriesDescending.sort(cmp);
+    timeEntriesDescending.reverse();
 
     const timeLabels = timeEntries.map(entry => formatDateGraph(entry.start));
     const payRates = timeEntries.map(entry => entry.pay_rate);
@@ -208,7 +216,7 @@ export default function Page({params, }: {params: {managee: string}}) {
                         <th className="sticky top-0 bg-white py-3 px-6 text-left font-medium text-gray-500 uppercase tracking-wider">End</th>                  </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                        {specificManageeData.time_entries.map((entry, index) => (
+                        {timeEntriesDescending.map((entry, index) => (
                           <tr
                             key={index}
                             className="cursor-pointer hover:bg-blue-100 transition-colors duration-150"
