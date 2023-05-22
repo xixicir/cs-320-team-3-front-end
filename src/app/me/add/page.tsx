@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { Taskbar } from "../../page"
 import React, { useState } from "react";
 import { utcToZonedTime } from 'date-fns-tz';
+import WithNoSSR from "@/app/components/withNoSSR";
+import fetchToCurl from "fetch-to-curl";
 
 function isValidDateString(dateString: string) {
   const date = parseISO(dateString);
@@ -16,7 +18,7 @@ function isValidDate(date: Date) {
     return date.toString() !== "Invalid Date";
 }
 
-const TimesheetInput = (employee: string) => {
+const TimesheetInput = ({ employee } : { employee: string}) => {
   const employeeName = employee;
   const router = useRouter()
   const [timeEntry, setTimeEntry] = useState<null | { start: string; end: string}>(null);
@@ -61,7 +63,13 @@ const TimesheetInput = (employee: string) => {
         body: JSON.stringify(timeEntry),
       };
 
-      const response = await fetch(API_ENDPOINT + `time/log`, requestOptions);
+      const URL = API_ENDPOINT + `time/log`;
+      const response = await fetch(URL, requestOptions);
+
+      if (!response.ok) {
+        console.log(`Request failed:`)
+        console.log(fetchToCurl(URL, requestOptions))
+      }
 
       // if response was success, redirect to me
       if (response.ok) {
@@ -122,6 +130,9 @@ const TimesheetInput = (employee: string) => {
   
 };
 
+
 export default function Page({ params }: { params: { employee: string } }) {
-  return TimesheetInput(params.employee);
+  return <WithNoSSR>
+    <TimesheetInput employee={params.employee} />
+  </WithNoSSR>
 }

@@ -1,6 +1,5 @@
 "use client"
 
-import { useRouter } from "next/navigation";
 import { getManageeTimeData } from "../../../auth";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -9,7 +8,6 @@ import { Taskbar } from "../../../page"
 
 
 export default function Page({params, }: {params: {managee: string}}) {
-    const router = useRouter();
     const [manageeTimeData, setManageeTimeData] = useState<any>(null);
     const [specificManageeData, setSpecificManageeData] = useState<any>(null);
     const formatDate = (date: string): string => {
@@ -136,7 +134,6 @@ export default function Page({params, }: {params: {managee: string}}) {
       },
     };
     
-    console.log(specificManageeData)
     return (
       <>
         <Taskbar />

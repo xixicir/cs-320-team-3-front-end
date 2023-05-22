@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import { getManageeTimeData, getManagerData, isLoggedIn } from "../../auth";
 import { Taskbar } from "../../page"
 import Chart from 'react-apexcharts';
-import { verify } from "crypto";
+import withNoSSR from "@/app/components/withNoSSR";
+import WithNoSSR from "@/app/components/withNoSSR";
 
 
-export default function Page() {
+export function Page() {
   const router = useRouter();
   const [managerData, setManagerData] = useState<any>(null);
   const [manageeTimeData, setManageeTimeData] = useState<any>(null);
@@ -224,3 +225,5 @@ export default function Page() {
     </>
   );
 }
+
+export default () => <WithNoSSR><Page/></WithNoSSR>
