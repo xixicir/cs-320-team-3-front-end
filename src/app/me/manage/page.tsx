@@ -51,6 +51,10 @@ export default function Page() {
     let curData = {};
 
     manageeTimeData.employeesTimeData.forEach((item) => {
+      function cmp(a, b) {
+        return Date.parse(a.start) - Date.parse(b.start);
+      }
+      item.time_entries.sort(cmp);
       for (const t of item.time_entries){
           const k = formatDateGraph(t.start);
           if (!(k in curData)){
@@ -65,14 +69,14 @@ export default function Page() {
     return curData;
   }
 
-  const timeEntries = computeAvgManageeData();
+  const timeEntriesAscending = computeAvgManageeData();
 
-  const timeLabels = Object.keys(timeEntries);
-  const payRates = Object.values(timeEntries).map(v => v.pay_rate);
-  const hoursWorked = Object.values(timeEntries).map(v => v.hours);
+  const timeLabels = Object.keys(timeEntriesAscending);
+  const payRates = Object.values(timeEntriesAscending).map(v => v.pay_rate);
+  const hoursWorked = Object.values(timeEntriesAscending).map(v => v.hours);
 
-  const payRatesAvg = Object.values(timeEntries).map(v => (v.pay_rate / v.n).toFixed(2));
-  const hoursWorkedAvg = Object.values(timeEntries).map(v => (v.hours / v.n).toFixed(2));
+  const payRatesAvg = Object.values(timeEntriesAscending).map(v => (v.pay_rate / v.n).toFixed(2));
+  const hoursWorkedAvg = Object.values(timeEntriesAscending).map(v => (v.hours / v.n).toFixed(2));
 
   const chartData = {
     series: [
